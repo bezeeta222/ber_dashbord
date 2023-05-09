@@ -1,80 +1,137 @@
+import Link from 'Link';
+import Image from 'next/image';
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
-import Link from '../../Link';
+import { Box, Divider, Grid, Stack, Typography, useMediaQuery } from '@mui/material';
 
 // project imports
-import AuthWrapper1 from 'components/authentication/AuthWrapper1';
-import AuthCardWrapper from 'components/authentication/AuthCardWrapper';
 import AuthLogin from 'components/authentication/auth-forms/AuthLogin';
+import AuthWrapper2 from 'components/authentication/AuthWrapper2';
+import AuthCardWrapper from 'components/authentication/AuthCardWrapper';
 import Logo from 'ui-component/Logo';
-import AuthFooter from 'ui-component/cards/AuthFooter';
-import useAuth from 'hooks/useAuth';
+import BackgroundPattern2 from 'ui-component/cards/BackgroundPattern2';
+import AuthSlider from 'ui-component/cards/AuthSlider';
+import { AuthSliderProps } from 'types';
+// assets
+const imgMain = '/assets/images/auth/img-a2-login.svg';
 
-// ================================|| AUTH3 - LOGIN ||================================ //
+// carousel items
+const items: AuthSliderProps[] = [
+  {
+    title: 'Components Based Design System',
+    description: 'Powerful and easy to use multipurpose theme'
+  },
+  {
+    title: 'Ready to use components',
+    description: 'Ready made component to apply directly'
+  },
+  {
+    title: 'Multiple dashboard and widgets',
+    description: '100+ widgets and customize controls'
+  }
+];
+
 
 const Login = () => {
   const theme = useTheme();
-  const { isLoggedIn } = useAuth();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
+  const matchDownMD = useMediaQuery(theme.breakpoints.down('lg'));
 
   return (
-    <AuthWrapper1>
-      <Grid container direction="column" justifyContent="flex-end" sx={{ minHeight: '100vh' }}>
-        <Grid item xs={12}>
-          <Grid container justifyContent="center" alignItems="center" sx={{ minHeight: 'calc(100vh - 68px)' }}>
-            <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
-              <AuthCardWrapper>
-                <Grid container spacing={2} alignItems="center" justifyContent="center">
-                  <Grid item sx={{ mb: 3 }}>
-                    <Link href="#">
-                      <Logo />
-                    </Link>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Grid container direction={matchDownSM ? 'column-reverse' : 'row'} alignItems="center" justifyContent="center">
-                      <Grid item>
-                        <Stack alignItems="center" justifyContent="center" spacing={1}>
-                          <Typography color={theme.palette.secondary.main} gutterBottom variant={matchDownSM ? 'h3' : 'h2'}>
-                            Hi, Welcome Back
-                          </Typography>
-                          <Typography variant="caption" fontSize="16px" textAlign={matchDownSM ? 'center' : 'inherit'}>
-                            Enter your credentials to continue
-                          </Typography>
-                        </Stack>
+    <AuthWrapper2>
+      <Grid container justifyContent={matchDownSM ? 'center' : 'space-between'} alignItems="center">
+        <Grid item md={6} lg={7} xs={12} sx={{ minHeight: '100vh' }}>
+          <Grid
+            sx={{ minHeight: '100vh' }}
+            container
+            alignItems={matchDownSM ? 'center' : 'flex-start'}
+            justifyContent={matchDownSM ? 'center' : 'space-between'}
+          >
+            <Grid item sx={{ display: { xs: 'none', md: 'block' }, m: 3 }}>
+              <Link href="#">
+                <Logo />
+              </Link>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              container
+              justifyContent="center"
+              alignItems="center"
+              sx={{ minHeight: { xs: 'calc(100vh - 68px)', md: 'calc(100vh - 152px)' } }}
+            >
+              <Stack justifyContent="center" alignItems="center" spacing={5} m={2}>
+                <Box component={Link} href="#" sx={{ display: { xs: 'block', md: 'none' } }}>
+                  <Logo />
+                </Box>
+                <AuthCardWrapper border={matchDownMD}>
+                  <Grid container spacing={2} justifyContent="center">
+                    <Grid item>
+                      <Stack alignItems="center" justifyContent="center" spacing={1}>
+                        <Typography color={theme.palette.secondary.main} gutterBottom variant={matchDownSM ? 'h3' : 'h2'}>
+                          Hi, Welcome Back
+                        </Typography>
+                        <Typography variant="caption" fontSize="16px" textAlign={matchDownSM ? 'center' : 'inherit'}>
+                          Enter your credentials to continue
+                        </Typography>
+                      </Stack>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <AuthLogin loginProp={2} />
+                    </Grid>
+                    {/* <Grid item xs={12}>
+                      <Divider />
+                    </Grid> */}
+                    {/* <Grid item xs={12}>
+                      <Grid item container direction="column" alignItems="center" xs={12}>
+                        <Typography
+                          component={Link}
+                          href="/pages/authentication/auth2/register"
+                          variant="subtitle1"
+                          sx={{ textDecoration: 'none' }}
+                        >
+                          Don&apos;t have an account?
+                        </Typography>
                       </Grid>
-                    </Grid>
+                    </Grid> */}
                   </Grid>
-                  <Grid item xs={12}>
-                    <AuthLogin />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Divider />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Grid item container direction="column" alignItems="center" xs={12}>
-                      <Typography
-                        component={Link}
-                        href={isLoggedIn ? '/pages/authentication/auth3/register' : '/register'}
-                        variant="subtitle1"
-                        sx={{ textDecoration: 'none' }}
-                      >
-                        Don&apos;t have an account?
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </AuthCardWrapper>
+                </AuthCardWrapper>
+              </Stack>
+            </Grid>
+            <Grid item xs={12} sx={{ m: 3 }}>
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={12} sx={{ m: 3, mt: 1 }}>
-          <AuthFooter />
+        <Grid item md={6} lg={5} sx={{ position: 'relative', alignSelf: 'stretch', display: { xs: 'none', md: 'block' } }}>
+          <BackgroundPattern2>
+            <Grid item container justifyContent="center">
+              <Grid item xs={12}>
+                <Grid item container justifyContent="center" sx={{ pb: 8 }}>
+                  <Grid item xs={10} lg={8} sx={{ '& .slick-list': { pb: 2 } }}>
+                    <AuthSlider items={items} />
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item xs={12} sx={{ position: 'relative' }}>
+                <div
+                  style={{
+                    maxWidth: '100%',
+                    margin: '0 auto',
+                    display: 'block',
+                    position: 'relative',
+                    zIndex: 5,
+                    textAlign: 'center'
+                  }}
+                >
+                  <Image alt="Auth method" src={imgMain} width={300} height={300} />
+                </div>
+              </Grid>
+            </Grid>
+          </BackgroundPattern2>
         </Grid>
       </Grid>
-    </AuthWrapper1>
+    </AuthWrapper2>
   );
 };
-
-Login.Layout = 'guestGuard';
+Login.Layout = 'minimalLayout';
 export default Login;

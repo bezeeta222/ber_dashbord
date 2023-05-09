@@ -18,6 +18,12 @@ import Loader from 'ui-component/Loader';
 import axios from 'utils/axios';
 import { InitialLoginContextProps, KeyedObject } from 'types';
 import { JWTContextType } from 'types/auth';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../graphQl/mutation'
+import { updateToken, updateUser } from 'store/slices/account';
+import { useDispatch } from 'react-redux';
+import router from 'next/router';
+
 
 const chance = new Chance();
 let users = [
@@ -61,6 +67,12 @@ const JWTContext = createContext<JWTContextType | null>(null);
 
 export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
   const [state, dispatch] = useReducer(accountReducer, initialState);
+  const dispatchs = useDispatch()
+
+  const [loginUser] = useMutation(LOGIN_USER)
+  const { v4: uuidv4 } = require('uuid');
+
+
 
   useEffect(() => {
     const init = async () => {
@@ -73,23 +85,23 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
             users = JSON.parse(localUsers!);
           }
 
-          const jwData = jwt.verify(serviceToken, JWT_SECRET);
-          const { userId } = jwData as JWTData;
-          const user = users.find((_user) => _user.id === userId);
+          // const jwData = jwt.verify(serviceToken, JWT_SECRET);
+          // const { userId } = jwData as JWTData;
+          // const user = users.find((_user) => _user.id === userId);
 
-          if (!user) {
-            return;
-          }
+          // if (!user) {
+          //   return;
+          // }
 
           dispatch({
             type: LOGIN,
             payload: {
               isLoggedIn: true,
-              user: {
-                email: user.email,
-                id: user.id,
-                name: user.name
-              }
+              // user: {
+              //   email: user.email,
+              //   id: user.id,
+              //   name: user.name
+              // }
             }
           });
         } else {
@@ -109,28 +121,39 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
   }, []);
 
   const login = async (email: string, password: string) => {
-    if (window.localStorage.getItem('users') !== undefined && window.localStorage.getItem('users') !== null) {
-      const localUsers = window.localStorage.getItem('users');
-      users = JSON.parse(localUsers!);
-    }
-    const userFound = users.find((_user) => _user.email === email);
-    if (!userFound || userFound.password !== password) {
-      return;
-    }
-    const serviceToken = jwt.sign({ userId: userFound.id }, JWT_SECRET, { expiresIn: JWT_EXPIRES_TIME });
-    const user = {
-      id: userFound.id,
-      email: userFound.email,
-      name: userFound.name
+  
+     console.log(email)
+    const response = await loginUser({
+      variables: { email: email, password: password },
+    })
+    const login = response?.data?.login.success
+    // console.log(login)
+    // console.log(response?.data?.login)
+    if(login){
+      await dispatchs(updateToken(response?.data?.login))
+      dispatchs(updateUser({ email: email }))
+      const serviceToken = jwt.sign({ userId: uuidv4(),}, JWT_SECRET, { expiresIn: JWT_EXPIRES_TIME });
+      setSession(serviceToken);
+      const user = {
+      id: uuidv4(),
+      email: "azadam8255@gmail.com",
+      name: "adam"
     };
-    setSession(serviceToken);
-    dispatch({
-      type: LOGIN,
-      payload: {
-        isLoggedIn: true,
-        user
-      }
-    });
+      dispatch({
+        type: LOGIN,
+        payload: {
+          isLoggedIn: true,
+          user
+        }
+      });
+      router.push('/dashboard/default');
+    }
+    else {
+      dispatch({
+        type: LOGOUT
+      });
+    }
+   
   };
 
   const register = async (email: string, password: string, firstName: string, lastName: string) => {

@@ -14,9 +14,9 @@ import '../scss/style.scss';
 import '@fullcalendar/common/main.css';
 import '@fullcalendar/daygrid/main.css';
 import '@fullcalendar/timegrid/main.css';
-import { FirebaseProvider as AuthProvider } from '../contexts/FirebaseContext';
+// import { FirebaseProvider as AuthProvider } from '../contexts/FirebaseContext';
 // import { Auth0Provider as AuthProvider } from '../contexts/Auth0Context';
-// import { JWTProvider as AuthProvider } from 'contexts/JWTContext';
+import { JWTProvider as AuthProvider } from 'contexts/JWTContext';
 // import { AWSCognitoProvider as AuthProvider } from 'contexts/AWSCognitoContext';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
 import Snackbar from 'ui-component/extended/Snackbar';
