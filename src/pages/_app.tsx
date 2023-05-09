@@ -30,7 +30,7 @@ const Noop: React.FC = ({ children }) => {
   return <> {children} </>;
 };
 
-const prefix = '/berry-dashboard';
+const prefix = '';
 
 function MyApp({ Component, pageProps }: AppProps & { Component: { Layout: LayoutType } }) {
   let Layout;
@@ -57,8 +57,8 @@ function MyApp({ Component, pageProps }: AppProps & { Component: { Layout: Layou
   return (
     <>
       <Head>
-        <title>Berry - React Material Admin Dashboard Template</title>
-        <link rel="icon" href={`/${prefix}/favicon.svg`} />
+        <title>xamble-Brand Dashboard</title>
+        <link rel="icon" href={`/favicon.svg`} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <ApolloProvider client={client}>

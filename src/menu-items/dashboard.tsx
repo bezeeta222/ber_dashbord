@@ -2,13 +2,17 @@
 import { FormattedMessage } from 'react-intl';
 
 // assets
-import { IconDashboard, IconDeviceAnalytics } from '@tabler/icons';
+import { IconDashboard, IconDeviceAnalytics, IconLayoutGrid, IconUser,IconTicket } from '@tabler/icons';
 import { OverrideIcon } from 'types';
 
 // constant
 const icons = {
   IconDashboard,
-  IconDeviceAnalytics
+  IconDeviceAnalytics,
+  IconLayoutGrid,
+  IconUser,
+  IconTicket
+
 };
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //
@@ -34,18 +38,26 @@ const dashboard: DashboardMenuProps = {
   children: [
     {
       id: 'default',
-      title: <FormattedMessage id="default" />,
+      title: <FormattedMessage id="Dashboard" />,
       type: 'item',
       url: '/dashboard/default',
-      icon: icons.IconDashboard,
+      icon: icons.IconLayoutGrid,
       breadcrumbs: false
     },
     {
       id: 'analytics',
-      title: <FormattedMessage id="analytics" />,
+      title: <FormattedMessage id="Customer" />,
       type: 'item',
-      url: '/dashboard/analytics',
-      icon: icons.IconDeviceAnalytics,
+      url: '/user',
+      icon: icons.IconUser,
+      breadcrumbs: false
+    },
+    {
+      id: 'analytics',
+      title: <FormattedMessage id="Events" />,
+      type: 'item',
+      url: '/events',
+      icon: icons.IconTicket,
       breadcrumbs: false
     }
   ]
