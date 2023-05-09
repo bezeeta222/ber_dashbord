@@ -12,7 +12,7 @@ import { NavItemType } from 'types';
 // ==============================|| MENU ITEMS ||============================== //
 
 const menuItems: { items: NavItemType[] } = {
-  items: [dashboard, widget, application, forms, elements, pages, utilities, support, other]
+  items: [dashboard]
 };
 
 export default menuItems;

@@ -10,7 +10,7 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 // project imports
 import MenuList from './MenuList';
 import LogoSection from '../LogoSection';
-import MenuCard from './MenuCard';
+// import MenuCard from './MenuCard';
 import { openDrawer } from 'store/slices/menu';
 import { useDispatch, useSelector } from 'store';
 import { drawerWidth } from 'store/constant';
@@ -50,7 +50,7 @@ const Sidebar = ({ window }: SidebarProps) => {
         }}
       >
         <MenuList />
-        <MenuCard />
+        {/* <MenuCard /> */}
       </PerfectScrollbar>
     ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
