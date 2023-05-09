@@ -82,6 +82,8 @@ const Dashboard = () => {
     );
   }
 
+  console.log(errorDashboard)
+
   if (errorDashboard) {
     return <p>Error :(</p>;
   }

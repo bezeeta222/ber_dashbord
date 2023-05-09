@@ -52,9 +52,12 @@ const verifyToken: (st: string) => boolean = (serviceToken) => {
   return decoded.exp > Date.now() / 1000;
 };
 
+
 const setSession = (serviceToken?: string | null) => {
   if (serviceToken) {
     localStorage.setItem('serviceToken', serviceToken);
+    localStorage.setItem('accessToken', serviceToken);
+
     axios.defaults.headers.common.Authorization = `Bearer ${serviceToken}`;
   } else {
     localStorage.removeItem('serviceToken');
@@ -128,12 +131,12 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
     })
     const login = response?.data?.login.success
     // console.log(login)
-    // console.log(response?.data?.login)
+    console.log(response?.data?.login.token)
     if(login){
-      await dispatchs(updateToken(response?.data?.login))
+      await dispatchs(updateToken(response?.data?.login.token))
       dispatchs(updateUser({ email: email }))
-      const serviceToken = jwt.sign({ userId: uuidv4(),}, JWT_SECRET, { expiresIn: JWT_EXPIRES_TIME });
-      setSession(serviceToken);
+      // const serviceToken = jwt.sign({ userId: uuidv4(),}, JWT_SECRET, { expiresIn: JWT_EXPIRES_TIME });
+      setSession(response?.data?.login.token);
       const user = {
       id: uuidv4(),
       email: "azadam8255@gmail.com",
