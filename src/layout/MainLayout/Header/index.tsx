@@ -14,6 +14,7 @@ import { openDrawer } from 'store/slices/menu';
 
 // assets
 import { IconMenu2 } from '@tabler/icons';
+import CollectionDropdown from './nftCollectionDropdown';
 
 // ==============================|| MAIN NAVBAR / HEADER ||============================== //
 
@@ -66,10 +67,11 @@ const Header = () => {
 
       {/* live customization & localization */}
       <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-        <LocalizationSection />
+        <CollectionDropdown />
       </Box>
 
       {/* notification & profile */}
+      {/* <CollectionDropdown /> */}
       <NotificationSection />
       <ProfileSection />
 
