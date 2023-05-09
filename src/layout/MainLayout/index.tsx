@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from 'store';
 import AuthGuard from 'utils/route-guard/AuthGuard';
 // assets
 import { IconChevronRight } from '@tabler/icons';
+import Customization from 'layout/Customization';
 
 interface MainStyleProps {
   theme: Theme;
@@ -128,7 +129,7 @@ const MainLayout: FC = ({ children }) => {
             </>
           )}
         </Main>
-        {/* <Customization /> */}
+        <Customization />
       </Box>
     </AuthGuard>
   );

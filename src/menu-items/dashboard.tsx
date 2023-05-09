@@ -42,7 +42,7 @@ const dashboard: DashboardMenuProps = {
       type: 'item',
       url: '/dashboard/default',
       icon: icons.IconLayoutGrid,
-      breadcrumbs: false
+      breadcrumbs: true
     },
     {
       id: 'analytics',
