@@ -42,23 +42,23 @@ const dashboard: DashboardMenuProps = {
       type: 'item',
       url: '/dashboard/default',
       icon: icons.IconLayoutGrid,
-      breadcrumbs: true
+      breadcrumbs: false
     },
     {
-      id: 'analytics',
+      id: 'user',
       title: <FormattedMessage id="Customer" />,
       type: 'item',
       url: '/user',
       icon: icons.IconUser,
-      breadcrumbs: false
+      breadcrumbs: true
     },
     {
-      id: 'analytics',
-      title: <FormattedMessage id="Events" />,
+      id: 'events',
+      title: <FormattedMessage id="Events Form" />,
       type: 'item',
       url: '/events',
       icon: icons.IconTicket,
-      breadcrumbs: false
+      breadcrumbs: true
     }
   ]
 };

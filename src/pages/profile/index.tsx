@@ -39,19 +39,9 @@ import { useSelector } from 'react-redux'
 import { RootState } from 'store'
 
 const Breadcrumbs = styled(MuiBreadcrumbs)(spacing)
-
-const Button = styled(MuiButton)(spacing)
-
 const Card = styled(MuiCard)(spacing)
-
-const Chip = styled(MuiChip)(spacing)
-
 const Divider = styled(MuiDivider)(spacing)
-
 const Grid = styled(MuiGrid)(spacing)
-
-const LinearProgress = styled(MuiLinearProgress)(spacing)
-
 const Spacer = styled.div(spacing)
 
 interface TypographyProps extends SpacingProps {
@@ -73,18 +63,6 @@ const StatsIcon = styled.div`
     height: 32px;
   }
 `
-
-interface Row {
-  id: number
-  name: string
-  age: number
-  email: string
-  tier: number
-  points: number
-  rawPoints: number
-  dateJoined: any
-}
-
 function Profile() {
   const router = useRouter()
   const tier = router.query.tier
@@ -144,13 +122,13 @@ function Profile() {
   console.log(
     'dataActivity' + JSON.stringify(dataActivity?.activityDetailsCount)
   )
-  // console.log(userId)
-  // console.log("historyData" + historyData)
-  // console.log("dataReward" + dataReward)
-  console.log("historyError" + historyError)
-  console.log("errorActivity" + errorActivity)
-  console.log("errorReward" + errorReward)
-  console.log("errorBadge" + errorBadge)
+  // // console.log(userId)
+  // // console.log("historyData" + historyData)
+  // // console.log("dataReward" + dataReward)
+  // console.log("historyError" + historyError)
+  // console.log("errorActivity" + errorActivity)
+  // console.log("errorReward" + errorReward)
+  // console.log("errorBadge" + errorBadge)
 
 
   React.useEffect(() => {
@@ -230,22 +208,6 @@ function Profile() {
 
   return (
     <React.Fragment>
-      <Typography variant="h3" gutterBottom display="inline">
-        Profile
-      </Typography>
-
-      <Breadcrumbs aria-label="Breadcrumb" mt={2}>
-        <NextLink href="/private" passHref>
-          <Link>Home</Link>
-        </NextLink>
-        <NextLink href="/tables/data-grid" passHref>
-          <Link>Customer</Link>
-        </NextLink>
-        <Typography>id</Typography>
-      </Breadcrumbs>
-
-      <Divider my={6} />
-
       <Grid
         container
         spacing={6}

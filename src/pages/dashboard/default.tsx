@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 // material-ui
-import { Card, Container, Divider, Grid, Typography } from '@mui/material';
+import { Card, Container, Divider, Grid, Typography, useTheme } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import React from 'react';
 import { RootState } from 'store';
@@ -18,6 +18,17 @@ import green from '@mui/material/colors/green';
 import red from '@mui/material/colors/red';
 import BubbleChart from 'components/dashboard/BubbleChart';
 import { data1, data2, data3 } from 'components/dashboard/BubbleChart/datss';
+import CustomerSatisfactionCard from 'components/widget/Statistics/CustomerSatisfactionCard';
+import SideIconCard from 'ui-component/cards/SideIconCard';
+import RevenueCard from 'ui-component/cards/RevenueCard';
+import { gridSpacing } from 'store/constant';
+import { pink } from '@mui/material/colors';
+import { AccountCircleTwoTone } from '@mui/icons-material';
+import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentTwoTone';
+import ThumbDownAltOutlinedIcon from '@mui/icons-material/ThumbDownAltTwoTone';
+import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayTwoTone';
+import MonetizationOnTwoToneIcon from '@mui/icons-material/MonetizationOnTwoTone';
+
 
 
 
@@ -26,6 +37,8 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const accessToken = window.localStorage.getItem('accessToken');
   const [bubbleCondition, setBubbleCondition] = React.useState<Boolean>(false);
+  const theme = useTheme();
+
 
   const selectedId = useSelector(
     (state: RootState) => state.collectionId.collectionId
@@ -100,63 +113,47 @@ const Dashboard = () => {
     <React.Fragment>
     {/* <Helmet title="Default Dashboard" /> */}
 
-    <Grid justifyContent="space-between" container spacing={6}>
-      <Grid item>
-        <Typography variant="h3" gutterBottom>
-          Dashboard
-        </Typography>
-        {/* <Typography variant="subtitle1">
-          {t("Welcome back")}, Lucy! {t("We've missed you")}.{" "}
-          <span role="img" aria-label="Waving Hand Sign">
-            👋
-          </span>
-        </Typography> */}
-      </Grid>
+   
 
-      {/* <CollectionDropdown /> */}
-    </Grid>
-
-    {/* <Divider my={6} /> */}
-
-    <Grid container spacing={1}>
-      <Grid item xs={12} sm={12} md={6} lg={3} xl>
-        <Stats
-          title="Total Join"
-          amount={dataDashboard?.getDashboardHomeById?.totalJoin}
-          chip="Today"
-          percentagetext="+26%"
-          percentagecolor={green[500]}
+    <Grid container spacing={gridSpacing} sx={{paddingBottom: '20px'}} >
+    <Grid item xs={12} sm={12} md={6} lg={3} xl>
+        <RevenueCard
+          primary="Total Join"
+          secondary={dataDashboard?.getDashboardHomeById?.totalJoin}
+          content="-"
+          iconPrimary={AccountCircleTwoTone}
+          color={theme.palette.secondary.main}
         />
       </Grid>
       <Grid item xs={12} sm={12} md={6} lg={3} xl>
-        <Stats
-          title="Total Badge Claim"
-          amount={dataDashboard?.getDashboardHomeById?.totalBadgeClaim}
-          chip="Annual"
-          percentagetext="-14%"
-          percentagecolor={red[500]}
+        <RevenueCard
+          primary="Total Badge Claim"
+          secondary={dataDashboard?.getDashboardHomeById?.totalBadgeClaim}
+          content="-"
+          iconPrimary={AssessmentOutlinedIcon}
+          color={theme.palette.primary.dark}
         />
       </Grid>
       <Grid item xs={12} sm={12} md={6} lg={3} xl>
-        <Stats
-          title="Total Reward "
-          amount={dataDashboard?.getDashboardHomeById?.totalRewardParticipant}
-          chip="Monthly"
-          percentagetext="+18%"
-          percentagecolor={green[500]}
+        <RevenueCard
+          primary="Total Reward "
+          secondary={dataDashboard?.getDashboardHomeById?.totalRewardParticipant}
+          content="-"
+          iconPrimary={MonetizationOnTwoToneIcon}
+          color={theme.palette.orange.dark}
         />
       </Grid>
       <Grid item xs={12} sm={12} md={6} lg={3} xl>
-        <Stats
-          title="Total Purchases"
-          amount={`RM ${dataDashboard?.getDashboardHomeById?.totalRawPoints?.toLocaleString()}`}
-          chip="Yearly"
-          percentagetext="-9%"
-          percentagecolor={red[500]}
-          // illustration="/static/img/illustrations/waiting.png"
-        />
+        <RevenueCard
+          primary="Total Sales"
+          secondary={`RM ${dataDashboard?.getDashboardHomeById?.totalRawPoints?.toLocaleString()}`}
+          content="-"
+          iconPrimary={CalendarTodayOutlinedIcon}
+          color={pink[500]}
+          />
       </Grid>
-    </Grid>
+</Grid>
+    
 
     {/* <Button
       variant="contained"

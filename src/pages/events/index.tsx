@@ -200,9 +200,9 @@ function FormikPage() {
         }) => (
           <Card mb={6}>
             <CardContent>
-              <Typography variant="h6" gutterBottom>
+              {/* <Typography variant="h6" gutterBottom>
                 Events Form
-              </Typography>
+              </Typography> */}
 
               {status && status.sent && (
                 <Alert severity="success" my={3}>
@@ -228,7 +228,7 @@ function FormikPage() {
                         onBlur={handleBlur}
                         onChange={handleChange}
                         variant="outlined"
-                        sx={{ marginY: '20px' }}
+                        // sx={{ marginY: '20px' }}
                       />
                     </Grid>
 
@@ -243,7 +243,7 @@ function FormikPage() {
                         onBlur={handleBlur}
                         onChange={handleChange}
                         variant="outlined"
-                        sx={{ marginY: '20px' }}
+                        // sx={{ marginY: '20px' }}
                       />
                     </Grid>
 
@@ -258,7 +258,7 @@ function FormikPage() {
                         onBlur={handleBlur}
                         onChange={handleChange}
                         variant="outlined"
-                        sx={{ marginY: '20px' }}
+                        // sx={{ marginY: '20px' }}
                       />
                     </Grid>
 
@@ -273,7 +273,7 @@ function FormikPage() {
                         onBlur={handleBlur}
                         onChange={handleChange}
                         variant="outlined"
-                        sx={{ marginY: '20px' }}
+                        // sx={{ marginY: '20px' }}
                       />
                     </Grid>
                     <Grid item md={6}>
@@ -288,7 +288,7 @@ function FormikPage() {
                         onChange={handleChange}
                         type="date"
                         variant="outlined"
-                        sx={{ marginY: '20px' }}
+                        // sx={{ marginY: '20px' }}
                         InputLabelProps={{
                           shrink: true,
                         }}
@@ -306,7 +306,7 @@ function FormikPage() {
                         onChange={handleChange}
                         type="date"
                         variant="outlined"
-                        sx={{ marginY: '20px' }}
+                        // sx={{ marginY: '20px' }}
                         InputLabelProps={{
                           shrink: true,
                         }}
