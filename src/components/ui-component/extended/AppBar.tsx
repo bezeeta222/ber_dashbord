@@ -70,28 +70,11 @@ const AppBar = ({ ...others }) => {
         <Container>
           <Toolbar>
             <Typography component="div" sx={{ flexGrow: 1, textAlign: 'left' }}>
+            <Link href="/">
               <Logo />
+            </Link>
             </Typography>
-            <Stack direction="row" sx={{ display: { xs: 'none', sm: 'block' } }} spacing={2}>
-              <Button color="inherit" component={Link} href="#" target="_blank">
-                Home
-              </Button>
-              <Button color="inherit" component={Link} href="login" target="_blank">
-                Dashboard
-              </Button>
-              <Button color="inherit" component={Link} href="https://codedthemes.gitbook.io/berry" target="_blank">
-                Documentation
-              </Button>
-              <Button
-                component={Link}
-                href="https://material-ui.com/store/items/berry-react-material-admin/"
-                disableElevation
-                variant="contained"
-                color="secondary"
-              >
-                Purchase Now
-              </Button>
-            </Stack>
+           
             <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
               <IconButton color="inherit" onClick={drawerToggler(true)} size="large">
                 <MenuIcon />

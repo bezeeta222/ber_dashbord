@@ -36,6 +36,7 @@ import useAuth from 'hooks/useAuth';
 // assets
 import { IconLogout, IconSearch, IconSettings, IconUser } from '@tabler/icons';
 import useConfig from 'hooks/useConfig';
+import { useRouter } from 'next/router';
 
 const User1 = '/assets/images/users/user-round.svg';
 
@@ -44,7 +45,7 @@ const User1 = '/assets/images/users/user-round.svg';
 const ProfileSection = () => {
   const theme = useTheme();
   const { borderRadius } = useConfig();
-  // const navigate = useNavigate();
+  const navigate = useRouter();
 
   const [sdm, setSdm] = useState(true);
   const [value, setValue] = useState('');
@@ -76,9 +77,9 @@ const ProfileSection = () => {
     setSelectedIndex(index);
     handleClose(event);
 
-    // if (route && route !== '') {
-    //     navigate(route);
-    // }
+    if (route && route !== '') {
+        navigate.push(route);
+    }
   };
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -256,19 +257,19 @@ const ProfileSection = () => {
                             sx={{ borderRadius: `${borderRadius}px` }}
                             selected={selectedIndex === 0}
                             onClick={(event: React.MouseEvent<HTMLDivElement>) =>
-                              handleListItemClick(event, 0, '/user/account-profile/profile1')
+                              handleListItemClick(event, 0, '/pages/privacy-policy/policy')
                             }
                           >
                             <ListItemIcon>
                               <IconSettings stroke={1.5} size="1.3rem" />
                             </ListItemIcon>
-                            <ListItemText primary={<Typography variant="body2">Account Settings</Typography>} />
+                            <ListItemText primary={<Typography variant="body2">Privacy Policy</Typography>} />
                           </ListItemButton>
                           <ListItemButton
                             sx={{ borderRadius: `${borderRadius}px` }}
                             selected={selectedIndex === 1}
                             onClick={(event: React.MouseEvent<HTMLDivElement>) =>
-                              handleListItemClick(event, 1, '/user/social-profile/posts')
+                              handleListItemClick(event, 1, '/pages/privacy-policy/policy')
                             }
                           >
                             <ListItemIcon>
@@ -278,17 +279,17 @@ const ProfileSection = () => {
                               primary={
                                 <Grid container spacing={1} justifyContent="space-between">
                                   <Grid item>
-                                    <Typography variant="body2">Social Profile</Typography>
+                                    <Typography variant="body2">Privacy Service</Typography>
                                   </Grid>
                                   <Grid item>
-                                    <Chip
+                                    {/* <Chip
                                       label="02"
                                       size="small"
                                       sx={{
                                         bgcolor: theme.palette.mode === 'dark' ? theme.palette.dark.dark : theme.palette.warning.dark,
                                         color: theme.palette.background.default
                                       }}
-                                    />
+                                    /> */}
                                   </Grid>
                                 </Grid>
                               }

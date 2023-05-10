@@ -2,7 +2,7 @@ import { memo, useMemo } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Box, Drawer, useMediaQuery } from '@mui/material';
+import { Box, Drawer, Typography, useMediaQuery } from '@mui/material';
 
 // third-party
 import PerfectScrollbar from 'react-perfect-scrollbar';
@@ -27,6 +27,8 @@ const Sidebar = ({ window }: SidebarProps) => {
 
   const dispatch = useDispatch();
   const { drawerOpen } = useSelector((state) => state.menu);
+  const version = process.env.NEXT_PUBLIC_APP_VERSION;
+
 
   const logo = useMemo(
     () => (
@@ -50,6 +52,13 @@ const Sidebar = ({ window }: SidebarProps) => {
         }}
       >
         <MenuList />
+        {version && (
+  <Typography variant="caption" align="center" sx={{ mt: 2, width: '100%' }} color="text.primary" textAlign="center">
+    Version {version}
+  </Typography>
+)}
+
+
         {/* <MenuCard /> */}
       </PerfectScrollbar>
     ),

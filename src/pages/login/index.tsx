@@ -18,16 +18,16 @@ const imgMain = '/assets/images/auth/xb_phone.png';
 // carousel items
 const items: AuthSliderProps[] = [
   {
-    title: 'Components Based Design System',
-    description: 'Powerful and easy to use multipurpose theme'
+    title: 'Earn Rewards with Every Purchase!',
+    description: 'Shop and earn rewards with every purchase! Join our rewards program today.'
   },
   {
-    title: 'Ready to use components',
-    description: 'Ready made component to apply directly'
+    title: 'Get More with Our Loyalty Program!',
+    description: 'Join our loyalty program and get exclusive discounts and free products.'
   },
   {
-    title: 'Multiple dashboard and widgets',
-    description: '100+ widgets and customize controls'
+    title: 'Unlock Exclusive Benefits with Our Membership Program!',
+    description: 'Become a member and enjoy VIP treatment, early access to new products, and exclusive discounts.'
   }
 ];
 
@@ -123,7 +123,7 @@ const Login = () => {
                     textAlign: 'center'
                   }}
                 >
-                  <Image alt="Auth method" src={imgMain} width={300} height={300} />
+                  <Image alt="Auth method" src={imgMain} width={207} height={262} />
                 </div>
               </Grid>
             </Grid>
