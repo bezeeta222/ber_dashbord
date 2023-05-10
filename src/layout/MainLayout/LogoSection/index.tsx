@@ -11,8 +11,6 @@ import Logo from 'ui-component/Logo';
 const LogoSection = () => (
   <MuiLink component={Link} href={DASHBOARD_PATH}>
     <Logo />
-    {/* <img src="/Users/adam/Documents/ber_dashbord/public/logog.png" alt="Logo" /> */}
-
   </MuiLink>
 );
 
