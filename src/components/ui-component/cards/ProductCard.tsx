@@ -27,7 +27,7 @@ const ProductCard = ({ id, color, name, image, description, offerPrice, salePric
 
   const prodProfile = image && `${prodImage}/${image}`;
   const [productRating] = useState<number | undefined>(rating);
-  const cart = useSelector((state) => state.cart);
+  const cart = useSelector(state => state.cart);
 
   const addCart = () => {
     dispatch(addProduct({ id, name, image, salePrice, offerPrice, color, size: 8, quantity: 1 }, cart.checkout.products));

@@ -41,7 +41,7 @@ export default function SpeedDialTooltipOpen() {
 
   const [hidden, setHidden] = React.useState(false);
   const handleVisibility = () => {
-    setHidden((prevHidden) => !prevHidden);
+    setHidden(prevHidden => !prevHidden);
   };
 
   return (
@@ -57,7 +57,7 @@ export default function SpeedDialTooltipOpen() {
         open={open}
         sx={{ position: 'absolute', bottom: 16, right: 16 }}
       >
-        {actions.map((action) => (
+        {actions.map(action => (
           <SpeedDialAction
             key={action.name}
             icon={action.icon}

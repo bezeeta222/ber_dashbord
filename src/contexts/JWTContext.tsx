@@ -19,11 +19,10 @@ import axios from 'utils/axios';
 import { InitialLoginContextProps, KeyedObject } from 'types';
 import { JWTContextType } from 'types/auth';
 import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../graphQl/mutation'
+import { LOGIN_USER } from '../graphQl/mutation';
 import { updateToken, updateUser } from 'store/slices/account';
 import { useDispatch } from 'react-redux';
 import router from 'next/router';
-
 
 const chance = new Chance();
 let users = [
@@ -41,7 +40,7 @@ const initialState: InitialLoginContextProps = {
   user: null
 };
 
-const verifyToken: (st: string) => boolean = (serviceToken) => {
+const verifyToken: (st: string) => boolean = serviceToken => {
   if (!serviceToken) {
     return false;
   }
@@ -51,7 +50,6 @@ const verifyToken: (st: string) => boolean = (serviceToken) => {
    */
   return decoded.exp > Date.now() / 1000;
 };
-
 
 const setSession = (serviceToken?: string | null) => {
   if (serviceToken) {
@@ -70,12 +68,10 @@ const JWTContext = createContext<JWTContextType | null>(null);
 
 export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
   const [state, dispatch] = useReducer(accountReducer, initialState);
-  const dispatchs = useDispatch()
+  const dispatchs = useDispatch();
 
-  const [loginUser] = useMutation(LOGIN_USER)
+  const [loginUser] = useMutation(LOGIN_USER);
   const { v4: uuidv4 } = require('uuid');
-
-
 
   useEffect(() => {
     const init = async () => {
@@ -99,7 +95,7 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
           dispatch({
             type: LOGIN,
             payload: {
-              isLoggedIn: true,
+              isLoggedIn: true
               // user: {
               //   email: user.email,
               //   id: user.id,
@@ -124,24 +120,23 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
   }, []);
 
   const login = async (email: string, password: string) => {
-  
-     console.log(email)
+    console.log(email);
     const response = await loginUser({
-      variables: { email: email, password: password },
-    })
-    const login = response?.data?.login.success
+      variables: { email: email, password: password }
+    });
+    const login = response?.data?.login.success;
     // console.log(login)
-    console.log(response?.data?.login.token)
-    if(login){
-      await dispatchs(updateToken(response?.data?.login.token))
-      dispatchs(updateUser({ email: email }))
+    console.log(response?.data?.login.token);
+    if (login) {
+      await dispatchs(updateToken(response?.data?.login.token));
+      dispatchs(updateUser({ email: email }));
       // const serviceToken = jwt.sign({ userId: uuidv4(),}, JWT_SECRET, { expiresIn: JWT_EXPIRES_TIME });
       setSession(response?.data?.login.token);
       const user = {
-      id: uuidv4(),
-      email: "azadam8255@gmail.com",
-      name: "adam"
-    };
+        id: uuidv4(),
+        email: 'azadam8255@gmail.com',
+        name: 'adam'
+      };
       dispatch({
         type: LOGIN,
         payload: {
@@ -150,13 +145,11 @@ export const JWTProvider = ({ children }: { children: React.ReactElement }) => {
         }
       });
       router.push('/dashboard/default');
-    }
-    else {
+    } else {
       dispatch({
         type: LOGOUT
       });
     }
-   
   };
 
   const register = async (email: string, password: string, firstName: string, lastName: string) => {

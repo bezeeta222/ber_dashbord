@@ -26,7 +26,7 @@ export default function SelectedListItem() {
       <List component="nav" aria-label="main mailbox folders">
         <ListItemButton
           selected={selectedIndex === 0}
-          onClick={(event) => handleListItemClick(event, 0)}
+          onClick={event => handleListItemClick(event, 0)}
           sx={{ borderRadius: `${borderRadius}px` }}
         >
           <ListItemIcon>
@@ -36,7 +36,7 @@ export default function SelectedListItem() {
         </ListItemButton>
         <ListItemButton
           selected={selectedIndex === 1}
-          onClick={(event) => handleListItemClick(event, 1)}
+          onClick={event => handleListItemClick(event, 1)}
           sx={{ borderRadius: `${borderRadius}px`, mt: 0.625 }}
         >
           <ListItemIcon>
@@ -46,7 +46,7 @@ export default function SelectedListItem() {
         </ListItemButton>
         <ListItemButton
           selected={selectedIndex === 2}
-          onClick={(event) => handleListItemClick(event, 2)}
+          onClick={event => handleListItemClick(event, 2)}
           sx={{ borderRadius: `${borderRadius}px`, mt: 0.625 }}
         >
           <ListItemIcon>

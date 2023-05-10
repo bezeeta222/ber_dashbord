@@ -119,7 +119,7 @@ const Post = ({ commentAdd, handleCommentLikes, handlePostLikes, handleReplayLik
 
   const [openComment, setOpenComment] = React.useState(!(data.comments && data.comments.length > 0));
   const handleChangeComment = () => {
-    setOpenComment((prev) => !prev);
+    setOpenComment(prev => !prev);
   };
 
   let commentsResult:

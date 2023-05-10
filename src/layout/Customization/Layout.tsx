@@ -18,7 +18,7 @@ const Layout = () => {
           row
           aria-label="layout"
           value={navType}
-          onChange={(e) => onChangeMenuType(e.target.value as PaletteMode)}
+          onChange={e => onChangeMenuType(e.target.value as PaletteMode)}
           name="row-radio-buttons-group"
         >
           <FormControlLabel

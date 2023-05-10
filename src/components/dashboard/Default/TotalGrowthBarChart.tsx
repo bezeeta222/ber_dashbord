@@ -190,8 +190,8 @@ const TotalGrowthBarChart = ({ isLoading }: TotalGrowthBarChartProps) => {
                   </Grid>
                 </Grid>
                 <Grid item>
-                  <TextField id="standard-select-currency" select value={value} onChange={(e) => setValue(e.target.value)}>
-                    {status.map((option) => (
+                  <TextField id="standard-select-currency" select value={value} onChange={e => setValue(e.target.value)}>
+                    {status.map(option => (
                       <MenuItem key={option.value} value={option.value}>
                         {option.label}
                       </MenuItem>

@@ -24,7 +24,7 @@ const MobileSection = () => {
   const anchorRef = useRef<any>(null);
 
   const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
+    setOpen(prevOpen => !prevOpen);
   };
 
   const handleClose = (event: MouseEvent | TouchEvent) => {

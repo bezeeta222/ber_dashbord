@@ -6,7 +6,7 @@ import { JWT_API } from 'config';
 const JWT_SECRET = JWT_API.secret;
 const JWT_EXPIRES_TIME = JWT_API.timeout;
 
-const delay = (timeout: number) => new Promise((res) => setTimeout(res, timeout));
+const delay = (timeout: number) => new Promise(res => setTimeout(res, timeout));
 let users = [
   {
     id: '5e86809283e28b96d2d38537',
@@ -23,7 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     users = JSON.parse(localUsers!);
   }
 
-  const user = users.find((_user) => _user.email === email);
+  const user = users.find(_user => _user.email === email);
 
   if (!user) {
     return res.status(400).json({ message: 'Verify Your Email & Password' });

@@ -101,7 +101,7 @@ const AuthResetPassword = ({ ...others }) => {
               value={values.password}
               name="password"
               onBlur={handleBlur}
-              onChange={(e) => {
+              onChange={e => {
                 handleChange(e);
                 changePassword(e.target.value);
               }}

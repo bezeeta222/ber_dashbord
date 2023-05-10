@@ -31,7 +31,6 @@ const items: AuthSliderProps[] = [
   }
 ];
 
-
 const Login = () => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
@@ -98,8 +97,7 @@ const Login = () => {
                 </AuthCardWrapper>
               </Stack>
             </Grid>
-            <Grid item xs={12} sx={{ m: 3 }}>
-            </Grid>
+            <Grid item xs={12} sx={{ m: 3 }}></Grid>
           </Grid>
         </Grid>
         <Grid item md={6} lg={5} sx={{ position: 'relative', alignSelf: 'stretch', display: { xs: 'none', md: 'block' } }}>

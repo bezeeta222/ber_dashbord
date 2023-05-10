@@ -18,12 +18,12 @@ import '@fullcalendar/timegrid/main.css';
 // import { Auth0Provider as AuthProvider } from '../contexts/Auth0Context';
 import { JWTProvider as AuthProvider } from 'contexts/JWTContext';
 // import { AWSCognitoProvider as AuthProvider } from 'contexts/AWSCognitoContext';
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import Snackbar from 'ui-component/extended/Snackbar';
 import MainLayout from 'layout/MainLayout';
 import GuestGuard from 'layout/GuestGuard';
 import MinimalLayout from 'layout/MinimalLayout';
-import { createUploadLink } from 'apollo-upload-client'
+import { createUploadLink } from 'apollo-upload-client';
 
 import { LayoutType } from 'types';
 const Noop: React.FC = ({ children }) => {
@@ -50,9 +50,8 @@ function MyApp({ Component, pageProps }: AppProps & { Component: { Layout: Layou
 
   const client = new ApolloClient({
     cache: new InMemoryCache(),
-    link: createUploadLink({ uri: process.env.NEXT_PUBLIC_GRAPHQL_URI }),
-  })
-
+    link: createUploadLink({ uri: process.env.NEXT_PUBLIC_GRAPHQL_URI })
+  });
 
   return (
     <>
@@ -62,28 +61,27 @@ function MyApp({ Component, pageProps }: AppProps & { Component: { Layout: Layou
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <ApolloProvider client={client}>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persister}>
-          <ConfigProvider>
-            <ThemeCustomization>
-              <RTLLayout>
-                <Locales>
-                  <NavigationScroll>
-                    <AuthProvider>
-                      <Layout>
-                        <Component {...pageProps} />
-                        <Snackbar />
-                      </Layout>
-                    </AuthProvider>
-                  </NavigationScroll>
-                </Locales>
-              </RTLLayout>
-            </ThemeCustomization>
-          </ConfigProvider>
-        </PersistGate>
-      </Provider>
-</ApolloProvider>
-      
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persister}>
+            <ConfigProvider>
+              <ThemeCustomization>
+                <RTLLayout>
+                  <Locales>
+                    <NavigationScroll>
+                      <AuthProvider>
+                        <Layout>
+                          <Component {...pageProps} />
+                          <Snackbar />
+                        </Layout>
+                      </AuthProvider>
+                    </NavigationScroll>
+                  </Locales>
+                </RTLLayout>
+              </ThemeCustomization>
+            </ConfigProvider>
+          </PersistGate>
+        </Provider>
+      </ApolloProvider>
     </>
   );
 }

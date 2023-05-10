@@ -27,7 +27,7 @@ export default function RadioList() {
                 <Typography variant="subtitle1">Start DND Mode</Typography>
               </Grid>
               <Grid item>
-                <Switch size="small" color="primary" checked={sdm} onChange={(e) => setSdm(e.target.checked)} name="sdm" />
+                <Switch size="small" color="primary" checked={sdm} onChange={e => setSdm(e.target.checked)} name="sdm" />
               </Grid>
             </Grid>
           </Grid>
@@ -37,7 +37,7 @@ export default function RadioList() {
                 <Typography variant="subtitle1">Allow Notifications</Typography>
               </Grid>
               <Grid item>
-                <Switch size="small" checked={notification} onChange={(e) => setNotification(e.target.checked)} name="sdm" />
+                <Switch size="small" checked={notification} onChange={e => setNotification(e.target.checked)} name="sdm" />
               </Grid>
             </Grid>
           </Grid>

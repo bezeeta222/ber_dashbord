@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-const delay = (timeout: number) => new Promise((res) => setTimeout(res, timeout));
+const delay = (timeout: number) => new Promise(res => setTimeout(res, timeout));
 let users = [
   {
     id: '5e86809283e28b96d2d38537',

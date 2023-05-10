@@ -78,11 +78,11 @@ const ProfileSection = () => {
     handleClose(event);
 
     if (route && route !== '') {
-        navigate.push(route);
+      navigate.push(route);
     }
   };
   const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
+    setOpen(prevOpen => !prevOpen);
   };
 
   const prevOpen = useRef(open);
@@ -176,7 +176,7 @@ const ProfileSection = () => {
                         sx={{ width: '100%', pr: 1, pl: 2, my: 2 }}
                         id="input-search-profile"
                         value={value}
-                        onChange={(e) => setValue(e.target.value)}
+                        onChange={e => setValue(e.target.value)}
                         placeholder="Search profile options"
                         startAdornment={
                           <InputAdornment position="start">
@@ -211,7 +211,7 @@ const ProfileSection = () => {
                                     <Switch
                                       color="primary"
                                       checked={sdm}
-                                      onChange={(e) => setSdm(e.target.checked)}
+                                      onChange={e => setSdm(e.target.checked)}
                                       name="sdm"
                                       size="small"
                                     />
@@ -226,7 +226,7 @@ const ProfileSection = () => {
                                   <Grid item>
                                     <Switch
                                       checked={notification}
-                                      onChange={(e) => setNotification(e.target.checked)}
+                                      onChange={e => setNotification(e.target.checked)}
                                       name="sdm"
                                       size="small"
                                     />

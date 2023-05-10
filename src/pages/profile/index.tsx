@@ -1,10 +1,9 @@
-import React from 'react'
-import type { ReactElement } from 'react'
-import styled from '@emotion/styled'
-import NextLink from 'next/link'
+import React from 'react';
+import type { ReactElement } from 'react';
+import styled from '@emotion/styled';
+import NextLink from 'next/link';
 
-
-import { Star, Award, Slack } from 'react-feather'
+import { Star, Award, Slack } from 'react-feather';
 
 import {
   Avatar as MuiAvatar,
@@ -22,36 +21,31 @@ import {
   TableCell,
   tableCellClasses,
   TableRow,
-  Typography as MuiTypography,
-} from '@mui/material'
-import { spacing, SpacingProps } from '@mui/system'
+  Typography as MuiTypography
+} from '@mui/material';
+import { spacing, SpacingProps } from '@mui/system';
 
-import { useRouter } from 'next/router'
-import {
-  ACTIVITY_DETAIL_COUNT,
-  GET_OWN_BADGE,
-  GET_USER_OWN_REWARD,
-  POINT_HISTORYBY_ID,
-} from '../../graphQl/query'
-import { useLazyQuery } from '@apollo/client'
-import { DataGrid, GridColDef, GridToolbar } from '@mui/x-data-grid'
-import { useSelector } from 'react-redux'
-import { RootState } from 'store'
+import { useRouter } from 'next/router';
+import { ACTIVITY_DETAIL_COUNT, GET_OWN_BADGE, GET_USER_OWN_REWARD, POINT_HISTORYBY_ID } from '../../graphQl/query';
+import { useLazyQuery } from '@apollo/client';
+import { DataGrid, GridColDef, GridToolbar } from '@mui/x-data-grid';
+import { useSelector } from 'react-redux';
+import { RootState } from 'store';
 
-const Breadcrumbs = styled(MuiBreadcrumbs)(spacing)
-const Card = styled(MuiCard)(spacing)
-const Divider = styled(MuiDivider)(spacing)
-const Grid = styled(MuiGrid)(spacing)
-const Spacer = styled.div(spacing)
+const Breadcrumbs = styled(MuiBreadcrumbs)(spacing);
+const Card = styled(MuiCard)(spacing);
+const Divider = styled(MuiDivider)(spacing);
+const Grid = styled(MuiGrid)(spacing);
+const Spacer = styled.div(spacing);
 
 interface TypographyProps extends SpacingProps {
-  component?: string
+  component?: string;
 }
-const Typography = styled(MuiTypography)<TypographyProps>(spacing)
+const Typography = styled(MuiTypography)<TypographyProps>(spacing);
 
 const Centered = styled.div`
   text-align: center;
-`
+`;
 
 const StatsIcon = styled.div`
   position: absolute;
@@ -62,66 +56,53 @@ const StatsIcon = styled.div`
     width: 32px;
     height: 32px;
   }
-`
+`;
 function Profile() {
-  const router = useRouter()
-  const tier = router.query.tier
-  const points = router.query.points
-  const rawPoints = router.query.rawPoints
-  const email = router.query.email
-  const dateJoined = router.query.dateJoined
+  const router = useRouter();
+  const tier = router.query.tier;
+  const points = router.query.points;
+  const rawPoints = router.query.rawPoints;
+  const email = router.query.email;
+  const dateJoined = router.query.dateJoined;
   // const accessToken = useSelector(
   //   (state: RootState) => state.account.token
   // )
-  const accessToken = window.localStorage.getItem('accessToken')
-  const userId = useSelector((state: RootState) => state.collectionId.tokenId)
+  const accessToken = window.localStorage.getItem('accessToken');
+  const userId = useSelector((state: RootState) => state.collectionId.tokenId);
 
-  const collectionId = useSelector(
-    (state: RootState) => state.collectionId.collectionId
-  )
+  const collectionId = useSelector((state: RootState) => state.collectionId.collectionId);
 
-  const [
-    getPointHistoryById,
-    { loading: loadingHistory, data: historyData, error: historyError },
-  ] = useLazyQuery(POINT_HISTORYBY_ID, {
+  const [getPointHistoryById, { loading: loadingHistory, data: historyData, error: historyError }] = useLazyQuery(POINT_HISTORYBY_ID, {
     onError: error => {
-      console.log('Error fetching activity details count:', error)
-      router.push('/user')
-    },
-  })
-  const [
-    getActivityDetailsCount,
-    { loading: loadingActivity, data: dataActivity, error: errorActivity },
-  ] = useLazyQuery(ACTIVITY_DETAIL_COUNT, {
-    onError: error => {
-      console.log('Error fetching activity details count:', error)
-      router.push('/user')
-    },
-  })
+      console.log('Error fetching activity details count:', error);
+      router.push('/user');
+    }
+  });
+  const [getActivityDetailsCount, { loading: loadingActivity, data: dataActivity, error: errorActivity }] = useLazyQuery(
+    ACTIVITY_DETAIL_COUNT,
+    {
+      onError: error => {
+        console.log('Error fetching activity details count:', error);
+        router.push('/user');
+      }
+    }
+  );
 
-  const [
-    getUserOwnReward,
-    { loading: loadingReward, data: dataReward, error: errorReward },
-  ] = useLazyQuery(GET_USER_OWN_REWARD, {
+  const [getUserOwnReward, { loading: loadingReward, data: dataReward, error: errorReward }] = useLazyQuery(GET_USER_OWN_REWARD, {
     onError: error => {
-      console.log('Error fetching activity details count:', error)
-      router.push('/user')
-    },
-  })
+      console.log('Error fetching activity details count:', error);
+      router.push('/user');
+    }
+  });
 
-  const [
-    getUserBadge,
-    { loading: loadingBadge, data: dataBadge, error: errorBadge },
-  ] = useLazyQuery(GET_OWN_BADGE, {
+  const [getUserBadge, { loading: loadingBadge, data: dataBadge, error: errorBadge }] = useLazyQuery(GET_OWN_BADGE, {
     onError: error => {
-      console.log('Error fetching activity details count:', error)
-      router.push('/user')
-    },
-  })
+      console.log('Error fetching activity details count:', error);
+      router.push('/user');
+    }
+  });
 
-  console.log(
-    'dataActivity' + JSON.stringify(dataActivity?.activityDetailsCount)
-  )
+  console.log('dataActivity' + JSON.stringify(dataActivity?.activityDetailsCount));
   // // console.log(userId)
   // // console.log("historyData" + historyData)
   // // console.log("dataReward" + dataReward)
@@ -130,51 +111,49 @@ function Profile() {
   // console.log("errorReward" + errorReward)
   // console.log("errorBadge" + errorBadge)
 
-
   React.useEffect(() => {
     getPointHistoryById({
       variables: { collectionId: collectionId, userId: userId },
       context: {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      },
-    })
+          Authorization: `Bearer ${accessToken}`
+        }
+      }
+    });
     getActivityDetailsCount({
       variables: { collectionId: collectionId, userId: userId },
       context: {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      },
-    })
+          Authorization: `Bearer ${accessToken}`
+        }
+      }
+    });
     getUserOwnReward({
       variables: { collectionId: collectionId, userId: userId },
       context: {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      },
-    })
+          Authorization: `Bearer ${accessToken}`
+        }
+      }
+    });
     getUserBadge({
       variables: { collectionId: collectionId, userId: userId },
       context: {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      },
-    })
-  }, [])
+          Authorization: `Bearer ${accessToken}`
+        }
+      }
+    });
+  }, []);
 
   if (loadingHistory || loadingActivity || loadingReward || loadingBadge) {
     return (
       <div style={{ textAlign: 'center', marginTop: '2rem' }}>
         <CircularProgress />
       </div>
-    )
+    );
   }
-  if (errorActivity && historyError && errorReward && errorBadge)
-    return <p>Error :( bye byee</p>
+  if (errorActivity && historyError && errorReward && errorBadge) return <p>Error :( bye byee</p>;
 
   const columns: GridColDef[] = [
     // { field: 'id', headerName: 'ID', flex: 1 },
@@ -187,10 +166,9 @@ function Profile() {
       field: 'created',
       headerName: 'Created',
       width: 200,
-      valueFormatter: (params: any) =>
-        new Date(params.value).toLocaleDateString('en-US'),
-    },
-  ]
+      valueFormatter: (params: any) => new Date(params.value).toLocaleDateString('en-US')
+    }
+  ];
 
   const rows =
     historyData?.pointHistoryById?.edges?.map((edge: any) => ({
@@ -200,19 +178,14 @@ function Profile() {
       details: edge.node.details,
       rawPoints: edge.node.rawPoints,
       action: edge.node.action,
-      created: edge.node.created,
-    })) ?? []
+      created: edge.node.created
+    })) ?? [];
 
-  const { pointsCount, badgeCount, rewardsCount } =
-    dataActivity?.activityDetailsCount ?? {}
+  const { pointsCount, badgeCount, rewardsCount } = dataActivity?.activityDetailsCount ?? {};
 
   return (
     <React.Fragment>
-      <Grid
-        container
-        spacing={6}
-        style={{ height: '100%', flexDirection: 'row' }}
-      >
+      <Grid container spacing={6} style={{ height: '100%', flexDirection: 'row' }}>
         <Grid item xs={12} lg={4} xl={3}>
           <Card mb={6}>
             <CardContent>
@@ -318,9 +291,7 @@ function Profile() {
 
           <Card mb={6}>
             <CardContent style={{ maxHeight: '400px' }}>
-              {dataBadge &&
-                dataBadge.getUserOwnBadges &&
-                dataBadge.getUserOwnBadges.length > 0 ? (
+              {dataBadge && dataBadge.getUserOwnBadges && dataBadge.getUserOwnBadges.length > 0 ? (
                 <>
                   <Typography variant="h6" gutterBottom>
                     Badge
@@ -330,20 +301,15 @@ function Profile() {
                   <Spacer mb={4} />
 
                   <Grid container spacing={2}>
-                    {dataBadge.getUserOwnBadges.map(
-                      (image: any, index: any) => (
-                        <Grid item xs={12} sm={6} md={4} key={index}>
-                          <img
-                            src={
-                              process.env.NEXT_PUBLIC_GRAPHQL_IMAGE +
-                              image?.images
-                            }
-                            alt={`Image ${index}`}
-                            style={{ width: '100%', height: 'auto' }}
-                          />
-                        </Grid>
-                      )
-                    )}
+                    {dataBadge.getUserOwnBadges.map((image: any, index: any) => (
+                      <Grid item xs={12} sm={6} md={4} key={index}>
+                        <img
+                          src={process.env.NEXT_PUBLIC_GRAPHQL_IMAGE + image?.images}
+                          alt={`Image ${index}`}
+                          style={{ width: '100%', height: 'auto' }}
+                        />
+                      </Grid>
+                    ))}
                   </Grid>
                 </>
               ) : (
@@ -419,7 +385,7 @@ function Profile() {
                   pageSize={5}
                   checkboxSelection={false}
                   components={{
-                    Toolbar: GridToolbar,
+                    Toolbar: GridToolbar
                   }}
                 />
               </div>
@@ -428,7 +394,7 @@ function Profile() {
         </Grid>
       </Grid>
     </React.Fragment>
-  )
+  );
 }
 
 Profile.Layout = 'authGuard';

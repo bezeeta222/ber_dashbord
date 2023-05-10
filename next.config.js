@@ -16,10 +16,10 @@ const nextConfig = withTM({
   reactStrictMode: true,
   images: {
     loader: 'akamai',
-    path: '',
+    path: ''
   },
   basePath: '',
-  assetPrefix: '',
+  assetPrefix: ''
 });
 
 module.exports = nextConfig;

@@ -82,7 +82,7 @@ function ConfirmationDialogRaw({ _onClose, value: valueProp, open, ...other }: C
           <DialogTitle id="confirmation-dialog-title">Phone Ringtone</DialogTitle>
           <DialogContent dividers>
             <RadioGroup ref={radioGroupRef} aria-label="ringtone" name="ringtone" value={value} onChange={handleChange}>
-              {options.map((option) => (
+              {options.map(option => (
                 <FormControlLabel value={option} key={option} control={<Radio />} label={option} />
               ))}
             </RadioGroup>

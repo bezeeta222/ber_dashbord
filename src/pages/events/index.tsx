@@ -1,10 +1,12 @@
-import React, { FC, useCallback, useEffect, useRef, useState } from 'react'
-import type { ReactElement } from 'react'
-import * as Yup from 'yup'
-import styled from '@emotion/styled'
-import NextLink from 'next/link'
-import { Formik } from 'formik'
-import Dropzone, { useDropzone } from 'react-dropzone'
+/* eslint-disable */
+
+import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
+import type { ReactElement } from 'react';
+import * as Yup from 'yup';
+import styled from '@emotion/styled';
+import NextLink from 'next/link';
+import { Formik } from 'formik';
+import Dropzone, { useDropzone } from 'react-dropzone';
 
 import {
   Alert as MuiAlert,
@@ -20,22 +22,22 @@ import {
   Menu,
   MenuItem,
   TextField,
-  Typography,
-} from '@mui/material'
-import { spacing } from '@mui/system'
+  Typography
+} from '@mui/material';
+import { spacing } from '@mui/system';
 
-import { useLazyQuery, useMutation } from '@apollo/client'
-import { COLLECTION_LIST, GET_DASHBOARD_BY_ID } from '../../graphQl/query'
-import { CREATE_EVENT } from '../../graphQl/mutation'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from 'store'
-import { updateCOllectionId, updateTitle } from 'store/slices/counter'
+import { useLazyQuery, useMutation } from '@apollo/client';
+import { COLLECTION_LIST, GET_DASHBOARD_BY_ID } from '../../graphQl/query';
+import { CREATE_EVENT } from '../../graphQl/mutation';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store';
+import { updateCOllectionId, updateTitle } from 'store/slices/counter';
 
-const Divider = styled(MuiDivider)(spacing)
-const Breadcrumbs = styled(MuiBreadcrumbs)(spacing)
-const Card = styled(MuiCard)(spacing)
-const Alert = styled(MuiAlert)(spacing)
-const Button = styled(MuiButton)(spacing)
+const Divider = styled(MuiDivider)(spacing);
+const Breadcrumbs = styled(MuiBreadcrumbs)(spacing);
+const Card = styled(MuiCard)(spacing);
+const Alert = styled(MuiAlert)(spacing);
+const Button = styled(MuiButton)(spacing);
 
 const initialValues = {
   collectionId: '',
@@ -44,8 +46,8 @@ const initialValues = {
   venue: '',
   location: '',
   startDate: '',
-  endDate: '',
-}
+  endDate: ''
+};
 
 const validationSchema = Yup.object().shape({
   details: Yup.string().required('Required'),
@@ -53,47 +55,35 @@ const validationSchema = Yup.object().shape({
   venue: Yup.string().required('Required'),
   location: Yup.string().required('Required'),
   startDate: Yup.date().required('Start Date is required'),
-  endDate: Yup.date()
-    .required('End Date is required')
-    .min(Yup.ref('startDate'), 'End Date must be later than Start Date'),
-})
+  endDate: Yup.date().required('End Date is required').min(Yup.ref('startDate'), 'End Date must be later than Start Date')
+});
 
 function FormikPage() {
-  const dispatch = useDispatch()
-  const accessToken = window.localStorage.getItem('accessToken')
-  const [uploadedFile, setUploadedFile] = React.useState<File | null>(null)
-  const [fileInfo, setFileInfo] = useState('')
+  const dispatch = useDispatch();
+  const accessToken = window.localStorage.getItem('accessToken');
+  const [uploadedFile, setUploadedFile] = React.useState<File | null>(null);
+  const [fileInfo, setFileInfo] = useState('');
 
   const onDrop = (acceptedFiles: File[]) => {
-    const file = acceptedFiles[0]
+    const file = acceptedFiles[0];
     if (file.size > 2 * 1024 * 1024) {
-      alert('File size must be less than 2 MB')
-      return
+      alert('File size must be less than 2 MB');
+      return;
     }
-    setUploadedFile(file)
-    setFileInfo(`${file.name} (${file.size} bytes)`)
-  }
+    setUploadedFile(file);
+    setFileInfo(`${file.name} (${file.size} bytes)`);
+  };
 
-  const [
-    submitEvent,
-    { loading: loadingEvent, error: errorEvent, data: dataEvent },
-  ] = useMutation(CREATE_EVENT)
-  const selectedId = useSelector(
-    (state: RootState) => state.collectionId.collectionId
-  )
-  const selectedTitle = useSelector(
-    (state: RootState) => state.collectionId.title
-  )
+  const [submitEvent, { loading: loadingEvent, error: errorEvent, data: dataEvent }] = useMutation(CREATE_EVENT);
+  const selectedId = useSelector((state: RootState) => state.collectionId.collectionId);
+  const selectedTitle = useSelector((state: RootState) => state.collectionId.title);
 
-  const handleSubmit = async (
-    values: any,
-    { resetForm, setErrors, setStatus, setSubmitting }: any
-  ) => {
+  const handleSubmit = async (values: any, { resetForm, setErrors, setStatus, setSubmitting }: any) => {
     try {
-      const startDate = new Date(values.startDate)
-      const endDate = new Date(values.endDate)
-      const isoStartDate = startDate.toISOString()
-      const isoEndDate = endDate.toISOString()
+      const startDate = new Date(values.startDate);
+      const endDate = new Date(values.endDate);
+      const isoStartDate = startDate.toISOString();
+      const isoEndDate = endDate.toISOString();
 
       const variables = {
         collectionId: selectedId,
@@ -103,101 +93,80 @@ function FormikPage() {
         title: values.title,
         venue: values.venue,
         location: values.location,
-        file: uploadedFile,
-      }
+        file: uploadedFile
+      };
 
       const response = await submitEvent({
         variables,
         context: {
           headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        },
-      })
+            Authorization: `Bearer ${accessToken}`
+          }
+        }
+      });
 
-      resetForm()
-      setStatus({ sent: true })
-      setSubmitting(false)
-      setFileInfo('')
+      resetForm();
+      setStatus({ sent: true });
+      setSubmitting(false);
+      setFileInfo('');
     } catch (error) {
       // setStatus({ sent: true });
       // setSubmitting(false);
-      console.error('Error creating event:', error)
+      console.error('Error creating event:', error);
     }
-  }
+  };
 
-  const [
-    getCollectionList,
+  const [getCollectionList, { loading: loadingCollectionList, error: errorCollectionList, data: dataCollectionList }] = useLazyQuery(
+    COLLECTION_LIST,
     {
-      loading: loadingCollectionList,
-      error: errorCollectionList,
-      data: dataCollectionList,
-    },
-  ] = useLazyQuery(COLLECTION_LIST, {
-    onCompleted: data => {
-      const firstCollection = data.collectionList[0]
-      getDashboardById({ variables: { collectionId: firstCollection.id } })
-      // console.log('firstCollection' + firstCollection);
-      if (selectedId == 0) {
-        dispatch(updateCOllectionId(firstCollection.id))
-        dispatch(updateTitle(firstCollection.title))
+      onCompleted: data => {
+        const firstCollection = data.collectionList[0];
+        getDashboardById({ variables: { collectionId: firstCollection.id } });
+        // console.log('firstCollection' + firstCollection);
+        if (selectedId == 0) {
+          dispatch(updateCOllectionId(firstCollection.id));
+          dispatch(updateTitle(firstCollection.title));
+        }
       }
-    },
-  })
+    }
+  );
 
-  const [
-    getDashboardById,
-    { loading: loadingDashboard, error: errorDashboard, data: dataDashboard },
-  ] = useLazyQuery(GET_DASHBOARD_BY_ID)
+  const [getDashboardById, { loading: loadingDashboard, error: errorDashboard, data: dataDashboard }] = useLazyQuery(GET_DASHBOARD_BY_ID);
 
   React.useEffect(() => {
     getCollectionList({
       context: {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      },
-    })
-  }, [])
+          Authorization: `Bearer ${accessToken}`
+        }
+      }
+    });
+  }, []);
 
   React.useEffect(() => {
     getDashboardById({
       variables: {
-        collectionId: selectedId,
+        collectionId: selectedId
       },
       context: {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      },
-    })
-  }, [selectedId])
+          Authorization: `Bearer ${accessToken}`
+        }
+      }
+    });
+  }, [selectedId]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     // accept: 'image/*',
     maxSize: 2 * 1024 * 1024,
-    multiple: false,
-  })
+    multiple: false
+  });
 
   return (
     <React.Fragment>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        {({
-          errors,
-          handleBlur,
-          handleChange,
-          handleSubmit,
-          isSubmitting,
-          touched,
-          values,
-          status,
-          setFieldValue,
-        }) => (
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+        {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values, status, setFieldValue }) => (
           <Card mb={6}>
             <CardContent>
               {/* <Typography variant="h6" gutterBottom>
@@ -290,7 +259,7 @@ function FormikPage() {
                         variant="outlined"
                         // sx={{ marginY: '20px' }}
                         InputLabelProps={{
-                          shrink: true,
+                          shrink: true
                         }}
                       />
                     </Grid>
@@ -308,7 +277,7 @@ function FormikPage() {
                         variant="outlined"
                         // sx={{ marginY: '20px' }}
                         InputLabelProps={{
-                          shrink: true,
+                          shrink: true
                         }}
                       />
                     </Grid>
@@ -319,7 +288,7 @@ function FormikPage() {
                           border: '2px dashed #666',
                           borderRadius: '5px',
                           padding: '20px',
-                          textAlign: 'center',
+                          textAlign: 'center'
                         }}
                       >
                         <input {...getInputProps()} />
@@ -328,21 +297,13 @@ function FormikPage() {
                         ) : isDragActive ? (
                           <p>Drop the file here ...</p>
                         ) : (
-                          <p>
-                            Drag and drop a file here, or click to select a file
-                            to upload
-                          </p>
+                          <p>Drag and drop a file here, or click to select a file to upload</p>
                         )}
                       </div>
                     </Grid>
                   </Grid>
                   <Box display="flex" justifyContent="flex-end" mt={3}>
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                      mt={3}
-                    >
+                    <Button type="submit" variant="contained" color="primary" mt={3}>
                       Submit
                     </Button>
                   </Box>
@@ -353,9 +314,10 @@ function FormikPage() {
         )}
       </Formik>
     </React.Fragment>
-  )
+  );
 }
 
 FormikPage.Layout = 'authGuard';
 export default FormikPage;
 
+/* eslint-disable */

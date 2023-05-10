@@ -65,7 +65,7 @@ const NotificationSection = () => {
   const anchorRef = useRef<any>(null);
 
   const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
+    setOpen(prevOpen => !prevOpen);
   };
 
   const handleClose = (event: React.MouseEvent<HTMLDivElement> | MouseEvent | TouchEvent) => {
@@ -183,7 +183,7 @@ const NotificationSection = () => {
                                     native: true
                                   }}
                                 >
-                                  {status.map((option) => (
+                                  {status.map(option => (
                                     <option key={option.value} value={option.value}>
                                       {option.label}
                                     </option>

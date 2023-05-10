@@ -80,7 +80,7 @@ export default function SimpleSpeedDials() {
           open={open}
           direction={direction}
         >
-          {actions.map((action) => (
+          {actions.map(action => (
             <SpeedDialAction key={action.name} icon={action.icon} tooltipTitle={action.name} onClick={handleClose} />
           ))}
         </SpeedDial>

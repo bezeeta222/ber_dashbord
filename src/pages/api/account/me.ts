@@ -27,7 +27,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const serviceToken = Authorization!.toString();
   const jwData = jwt.verify(serviceToken, JWT_SECRET);
   const { userId } = jwData as JWTData;
-  const user = users.find((_user) => _user.id === userId);
+  const user = users.find(_user => _user.id === userId);
 
   if (!user) {
     return res.status(401).json({ message: 'Invalid Token' });

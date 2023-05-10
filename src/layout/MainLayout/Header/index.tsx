@@ -22,7 +22,7 @@ const Header = () => {
   const theme = useTheme();
 
   const dispatch = useDispatch();
-  const { drawerOpen } = useSelector((state) => state.menu);
+  const { drawerOpen } = useSelector(state => state.menu);
 
   return (
     <>

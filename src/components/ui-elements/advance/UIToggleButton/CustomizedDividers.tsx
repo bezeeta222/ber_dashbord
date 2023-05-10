@@ -51,7 +51,7 @@ export default function CustomizedDividers() {
         elevation={0}
         sx={{
           display: 'flex',
-          border: (theme) => `1px solid ${theme.palette.divider}`,
+          border: theme => `1px solid ${theme.palette.divider}`,
           flexWrap: 'wrap'
         }}
       >

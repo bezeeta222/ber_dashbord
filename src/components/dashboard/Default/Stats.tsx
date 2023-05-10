@@ -1,16 +1,10 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { css } from '@emotion/react'
-import { rgba } from 'polished'
+import React from 'react';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import { rgba } from 'polished';
 
-import {
-  Box,
-  Card as MuiCard,
-  CardContent as MuiCardContent,
-  Chip as MuiChip,
-  Typography as MuiTypography,
-} from '@mui/material'
-import { spacing } from '@mui/system'
+import { Box, Card as MuiCard, CardContent as MuiCardContent, Chip as MuiChip, Typography as MuiTypography } from '@mui/material';
+import { spacing } from '@mui/system';
 
 const illustrationCardStyle = (props: any) => css`
   ${props.illustration &&
@@ -19,7 +13,7 @@ const illustrationCardStyle = (props: any) => css`
     background: ${rgba(props.theme.palette.primary.main, 0.125)};
     color: ${props.theme.palette.primary.main};
   `}
-`
+`;
 
 // const Card = styled(MuiCard)<{ illustration?: string }>`
 //   position: relative;
@@ -32,19 +26,16 @@ const Card = styled(MuiCard)<{ illustration?: string }>`
   position: relative;
 
   ${illustrationCardStyle}
-`
+`;
 
-
-const Typography = styled(MuiTypography)(spacing)
+const Typography = styled(MuiTypography)(spacing);
 
 const CardContent = styled(MuiCardContent)`
   position: relative;
 
   &:last-child {
   }
-`
-
-
+`;
 
 const illustrationPercentageStyle = (props: any) => css`
   ${props.illustration &&
@@ -52,29 +43,18 @@ const illustrationPercentageStyle = (props: any) => css`
   `
     color: ${rgba(props.theme.palette.primary.main, 0.85)};
   `}
-`
-
-
-
-
+`;
 
 interface StatsProps {
-  title: string
-  amount: string
-  chip: string
-  percentagetext: string
-  percentagecolor: string
-  illustration?: string
+  title: string;
+  amount: string;
+  chip: string;
+  percentagetext: string;
+  percentagecolor: string;
+  illustration?: string;
 }
 
-const Stats = ({
-  title,
-  amount,
-  chip,
-  percentagetext,
-  percentagecolor,
-  illustration,
-}: StatsProps) => {
+const Stats = ({ title, amount, chip, percentagetext, percentagecolor, illustration }: StatsProps) => {
   return (
     <Card illustration={illustration}>
       <CardContent>
@@ -99,7 +79,7 @@ const Stats = ({
         <IllustrationImage src={illustration} alt="Illustration" />
       )} */}
     </Card>
-  )
-}
+  );
+};
 
-export default Stats
+export default Stats;

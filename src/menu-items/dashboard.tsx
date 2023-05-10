@@ -2,7 +2,7 @@
 import { FormattedMessage } from 'react-intl';
 
 // assets
-import { IconDashboard, IconDeviceAnalytics, IconLayoutGrid, IconUser,IconTicket } from '@tabler/icons';
+import { IconDashboard, IconDeviceAnalytics, IconLayoutGrid, IconUser, IconTicket } from '@tabler/icons';
 import { OverrideIcon } from 'types';
 
 // constant
@@ -12,7 +12,6 @@ const icons = {
   IconLayoutGrid,
   IconUser,
   IconTicket
-
 };
 
 // ==============================|| DASHBOARD MENU ITEMS ||============================== //

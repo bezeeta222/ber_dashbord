@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client';
 
 export const COLLECTION_LIST = gql`
   query collection_list {
@@ -7,7 +7,7 @@ export const COLLECTION_LIST = gql`
       title
     }
   }
-`
+`;
 
 export const POINT_LIST = gql`
   query pointlist($collectionId: ID!) {
@@ -28,7 +28,7 @@ export const POINT_LIST = gql`
       }
     }
   }
-`
+`;
 
 export const ACTIVITY_DETAIL_COUNT = gql`
   query activityDetailsCount($collectionId: ID!, $userId: ID!) {
@@ -38,15 +38,11 @@ export const ACTIVITY_DETAIL_COUNT = gql`
       rewardsCount
     }
   }
-`
+`;
 
 export const POINT_HISTORYBY_ID = gql`
   query pointHistoryById($collectionId: ID!, $userId: ID!) {
-    pointHistoryById(
-      collectionId: $collectionId
-      userId: $userId
-      orderby: ["created"]
-    ) {
+    pointHistoryById(collectionId: $collectionId, userId: $userId, orderby: ["created"]) {
       edges {
         node {
           id
@@ -62,7 +58,7 @@ export const POINT_HISTORYBY_ID = gql`
       }
     }
   }
-`
+`;
 
 export const GET_DASHBOARD_BY_ID = gql`
   query getDashboardHomeById($collectionId: ID!) {
@@ -79,7 +75,7 @@ export const GET_DASHBOARD_BY_ID = gql`
       }
     }
   }
-`
+`;
 
 export const GET_DASHBOARD_ALL = gql`
   query get_dashboard_all {
@@ -96,7 +92,7 @@ export const GET_DASHBOARD_ALL = gql`
       }
     }
   }
-`
+`;
 
 export const GET_USER_OWN_REWARD = gql`
   query get_user_own_reward($collectionId: ID!, $userId: ID!) {
@@ -105,7 +101,7 @@ export const GET_USER_OWN_REWARD = gql`
       images
     }
   }
-`
+`;
 
 export const GET_OWN_BADGE = gql`
   query get_own_badge($collectionId: ID!, $userId: ID!) {
@@ -119,4 +115,4 @@ export const GET_OWN_BADGE = gql`
       }
     }
   }
-`
+`;

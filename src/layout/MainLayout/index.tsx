@@ -25,7 +25,7 @@ interface MainStyleProps {
 }
 
 // styles
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }: MainStyleProps) => ({
+const Main = styled('main', { shouldForwardProp: prop => prop !== 'open' })(({ theme, open }: MainStyleProps) => ({
   ...theme.typography.mainContent,
   ...(!open && {
     borderBottomLeftRadius: 0,
@@ -75,7 +75,7 @@ const MainLayout: FC = ({ children }) => {
   const matchDownMd = useMediaQuery(theme.breakpoints.down('lg'));
 
   const dispatch = useDispatch();
-  const { drawerOpen } = useSelector((state) => state.menu);
+  const { drawerOpen } = useSelector(state => state.menu);
   const { container } = useConfig();
 
   React.useEffect(() => {

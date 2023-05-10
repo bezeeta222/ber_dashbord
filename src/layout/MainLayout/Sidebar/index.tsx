@@ -26,9 +26,8 @@ const Sidebar = ({ window }: SidebarProps) => {
   const matchUpMd = useMediaQuery(theme.breakpoints.up('md'));
 
   const dispatch = useDispatch();
-  const { drawerOpen } = useSelector((state) => state.menu);
+  const { drawerOpen } = useSelector(state => state.menu);
   const version = process.env.NEXT_PUBLIC_APP_VERSION;
-
 
   const logo = useMemo(
     () => (
@@ -53,11 +52,10 @@ const Sidebar = ({ window }: SidebarProps) => {
       >
         <MenuList />
         {version && (
-  <Typography variant="caption" align="center" sx={{ mt: 2, width: '100%' }} color="text.primary" textAlign="center">
-    Version {version}
-  </Typography>
-)}
-
+          <Typography variant="caption" align="center" sx={{ mt: 2, width: '100%' }} color="text.primary" textAlign="center">
+            Version {version}
+          </Typography>
+        )}
 
         {/* <MenuCard /> */}
       </PerfectScrollbar>

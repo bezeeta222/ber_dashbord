@@ -70,11 +70,11 @@ const AppBar = ({ ...others }) => {
         <Container>
           <Toolbar>
             <Typography component="div" sx={{ flexGrow: 1, textAlign: 'left' }}>
-            <Link href="/">
-              <Logo />
-            </Link>
+              <Link href="/">
+                <Logo />
+              </Link>
             </Typography>
-           
+
             <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
               <IconButton color="inherit" onClick={drawerToggler(true)} size="large">
                 <MenuIcon />

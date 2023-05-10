@@ -45,7 +45,7 @@ const LocalizationSection = () => {
   };
 
   const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
+    setOpen(prevOpen => !prevOpen);
   };
 
   const handleClose = (event: MouseEvent | TouchEvent) => {
@@ -144,7 +144,7 @@ const LocalizationSection = () => {
                       }
                     }}
                   >
-                    <ListItemButton selected={language === 'en'} onClick={(event) => handleListItemClick(event, 'en')}>
+                    <ListItemButton selected={language === 'en'} onClick={event => handleListItemClick(event, 'en')}>
                       <ListItemText
                         primary={
                           <Grid container>
@@ -156,7 +156,7 @@ const LocalizationSection = () => {
                         }
                       />
                     </ListItemButton>
-                    <ListItemButton selected={language === 'fr'} onClick={(event) => handleListItemClick(event, 'fr')}>
+                    <ListItemButton selected={language === 'fr'} onClick={event => handleListItemClick(event, 'fr')}>
                       <ListItemText
                         primary={
                           <Grid container>
@@ -168,7 +168,7 @@ const LocalizationSection = () => {
                         }
                       />
                     </ListItemButton>
-                    <ListItemButton selected={language === 'ro'} onClick={(event) => handleListItemClick(event, 'ro')}>
+                    <ListItemButton selected={language === 'ro'} onClick={event => handleListItemClick(event, 'ro')}>
                       <ListItemText
                         primary={
                           <Grid container>
@@ -180,7 +180,7 @@ const LocalizationSection = () => {
                         }
                       />
                     </ListItemButton>
-                    <ListItemButton selected={language === 'zh'} onClick={(event) => handleListItemClick(event, 'zh')}>
+                    <ListItemButton selected={language === 'zh'} onClick={event => handleListItemClick(event, 'zh')}>
                       <ListItemText
                         primary={
                           <Grid container>

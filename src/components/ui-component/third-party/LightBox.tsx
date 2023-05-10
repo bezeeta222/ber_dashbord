@@ -17,7 +17,7 @@ const LightBox = ({ currentImage, photos }: LightBoxProps) => (
   <>
     <Carousel
       currentIndex={currentImage}
-      views={photos.map((x) => ({
+      views={photos.map(x => ({
         ...x,
         srcset: x.srcSet,
         caption: x.title

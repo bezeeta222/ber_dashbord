@@ -14,11 +14,7 @@ const Landing: React.FC = () => {
     router.push('/dashboard/default');
   }, []);
 
-  return (
-    <>
-      
-    </>
-  );
+  return <></>;
 };
 
 export default Landing;

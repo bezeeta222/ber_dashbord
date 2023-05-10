@@ -112,7 +112,7 @@ const Comment = ({ comment, handleCommentLikes, handleReplayLikes, postId, reply
 
   const [openReply, setOpenReply] = useState(false);
   const handleChangeReply = () => {
-    setOpenReply((prev) => !prev);
+    setOpenReply(prev => !prev);
   };
 
   let repliesResult: ReactElement[] | ReactElement = <></>;
